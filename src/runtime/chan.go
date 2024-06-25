@@ -71,6 +71,7 @@ func makechan64(t *chantype, size int64) *hchan {
 }
 
 func makechan(t *chantype, size int) *hchan {
+	print("makechan(", t, ", ", size, ")")
 	elem := t.Elem
 
 	// compiler checks this but be safe.
@@ -169,6 +170,7 @@ func chansend1(c *hchan, elem unsafe.Pointer) {
  * the operation; we'll see that it's now closed.
  */
 func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
+	print("chansend(", c, ", ", ep, ", block=", block, ", callerpc=", ")")
 	if c == nil {
 		if !block {
 			return false
